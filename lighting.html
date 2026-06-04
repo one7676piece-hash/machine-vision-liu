@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>光源與照明設計 - 機器視覺與影像處理</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <div class="sidebar-logo-icon">👁</div>
+      <div>
+        <div class="sidebar-logo-text">機器視覺<br>影像處理</div>
+        <div class="sidebar-logo-sub">Machine Vision</div>
+      </div>
+    </a>
+  </div>
+  <nav><ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span>首頁</a></li>
+    <li><a href="intro.html"><span class="nav-icon">🔍</span>機器視覺簡介</a></li>
+    <li><a href="imaging.html"><span class="nav-icon">📷</span>取像模組</a></li>
+    <li><a href="lighting.html" class="active"><span class="nav-icon">💡</span>光源與照明</a></li>
+    <li><a href="processing.html"><span class="nav-icon">🎨</span>影像處理</a></li>
+    <li><a href="application.html"><span class="nav-icon">✅</span>檢測應用</a></li>
+    <li><a href="project.html"><span class="nav-icon">📁</span>專題報告</a></li>
+  </ul></nav>
+  <div class="sidebar-footer">機器視覺與影像處理<br>© 2025 課程教材</div>
+</aside>
+
+<div class="main">
+  <div class="page-header">
+    <div class="page-header-label">Chapter 03</div>
+    <h1><span class="page-icon">💡</span>光源與照明設計</h1>
+    <div class="page-header-subtitle">Lighting Design</div>
+  </div>
+
+  <div class="content">
+
+    <h2>為什麼照明如此重要？</h2>
+    <p>在機器視覺系統中，照明設計往往決定了整個系統成敗。良好的照明能夠：</p>
+    <ul class="feature-list">
+      <li>突顯待測物的關鍵特徵，讓缺陷更容易被識別</li>
+      <li>提高影像對比度，降低演算法處理難度</li>
+      <li>抑制不必要的反射與陰影干擾</li>
+      <li>確保影像穩定性與重現性，提升檢測可靠度</li>
+    </ul>
+
+    <h2>常見照明方式</h2>
+    <div class="def-grid">
+      <div class="def-item">
+        <h4>☀️ 同軸照明</h4>
+        <p>光源與鏡頭同軸，適合反光平面，突顯表面刮痕與印刷瑕疵</p>
+      </div>
+      <div class="def-item">
+        <h4>📐 低角度照明</h4>
+        <p>以小角度斜射光線，強調表面高度變化，適合凹凸紋理檢測</p>
+      </div>
+      <div class="def-item">
+        <h4>🌫️ 背光照明</h4>
+        <p>光源置於物件後方，形成剪影效果，適合輪廓尺寸量測</p>
+      </div>
+      <div class="def-item">
+        <h4>💫 環形照明</h4>
+        <p>均勻環形光源，減少陰影，廣泛用於一般表面檢測</p>
+      </div>
+      <div class="def-item">
+        <h4>🎭 穹頂照明</h4>
+        <p>漫射均勻光線，消除強反光，適合曲面或高反光物件</p>
+      </div>
+      <div class="def-item">
+        <h4>🔦 條形照明</h4>
+        <p>條狀光源提供定向照明，適合連續物件邊緣與表面掃描</p>
+      </div>
+    </div>
+
+    <h2>光源種類</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">💡</span>
+        <div class="card-title">LED 光源</div>
+        <div class="card-desc">壽命長、節能、可快速閃光，為目前工業視覺主流光源</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌈</span>
+        <div class="card-title">紫外線 (UV)</div>
+        <div class="card-desc">激發螢光效果，用於熒光標記、膠水固化檢測</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔴</span>
+        <div class="card-title">紅外線 (IR)</div>
+        <div class="card-desc">穿透能力強，可透過半透明材料，用於半導體內部檢測</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌿</span>
+        <div class="card-title">雷射光源</div>
+        <div class="card-desc">高度聚焦、單色性強，用於三維輪廓量測與精密定位</div>
+      </div>
+    </div>
+
+    <h2>色彩濾鏡的應用</h2>
+    <p>搭配濾光片可進一步強化影像對比度：</p>
+    <div class="tech-list">
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>同色濾鏡</strong>
+          <span>讓與光源相同顏色的區域顯示為白色（高亮），增強目標特徵</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>互補色濾鏡</strong>
+          <span>讓目標顏色呈現為黑色（暗區），提升前景與背景對比</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>偏光濾鏡</strong>
+          <span>消除鏡面反光，對金屬或玻璃表面檢測特別有效</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>設計原則：</strong> 照明設計沒有萬能解法，需根據待測物材質、檢測目標與環境條件，實際測試後選擇最適合的照明方案。
+    </div>
+
+    <div class="pdf-section">
+      <h3>📄 相關 PDF 講義</h3>
+      <div class="pdf-links">
+        <a href="#" class="pdf-link">📄 光源照明設計.pdf</a>
+        <a href="#" class="pdf-link">📄 照明方式比較KM.pdf</a>
+      </div>
+    </div>
+
+  </div>
+  <footer>機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>© 2025 課程教材網站</footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) sidebar.classList.remove('open');
+  });
+</script>
+</body>
+</html>

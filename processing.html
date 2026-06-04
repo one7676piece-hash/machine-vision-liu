@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>影像處理技術 - 機器視覺與影像處理</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .code-block {
+      background: #1e293b;
+      color: #e2e8f0;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    .code-block .kw { color: #7dd3fc; }
+    .code-block .fn { color: #86efac; }
+    .code-block .st { color: #fca5a5; }
+    .code-block .cm { color: #64748b; }
+  </style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <div class="sidebar-logo-icon">👁</div>
+      <div>
+        <div class="sidebar-logo-text">機器視覺<br>影像處理</div>
+        <div class="sidebar-logo-sub">Machine Vision</div>
+      </div>
+    </a>
+  </div>
+  <nav><ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span>首頁</a></li>
+    <li><a href="intro.html"><span class="nav-icon">🔍</span>機器視覺簡介</a></li>
+    <li><a href="imaging.html"><span class="nav-icon">📷</span>取像模組</a></li>
+    <li><a href="lighting.html"><span class="nav-icon">💡</span>光源與照明</a></li>
+    <li><a href="processing.html" class="active"><span class="nav-icon">🎨</span>影像處理</a></li>
+    <li><a href="application.html"><span class="nav-icon">✅</span>檢測應用</a></li>
+    <li><a href="project.html"><span class="nav-icon">📁</span>專題報告</a></li>
+  </ul></nav>
+  <div class="sidebar-footer">機器視覺與影像處理<br>© 2025 課程教材</div>
+</aside>
+
+<div class="main">
+  <div class="page-header">
+    <div class="page-header-label">Chapter 04</div>
+    <h1><span class="page-icon">🎨</span>影像處理技術</h1>
+    <div class="page-header-subtitle">Image Processing Techniques</div>
+  </div>
+
+  <div class="content">
+
+    <h2>影像前處理</h2>
+    <p>在進行特徵提取或缺陷檢測前，通常需要先對影像進行前處理，以提升後續演算法的效果：</p>
+    <div class="tech-list">
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>灰階轉換 (Grayscale)</strong>
+          <span>將彩色影像轉換為單通道灰階，降低計算量，簡化後續處理</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>直方圖等化 (Histogram Equalization)</strong>
+          <span>增強影像對比度，使暗部細節更清晰，改善曝光不均問題</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>去雜訊 (Denoising)</strong>
+          <span>去除感測器雜訊，提升影像清晰度，常用高斯濾波或中值濾波</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>空間域濾波</h2>
+    <div class="def-grid">
+      <div class="def-item">
+        <h4>🔲 均值濾波</h4>
+        <p>對鄰域像素取平均值，可平滑影像，但會使邊緣模糊</p>
+      </div>
+      <div class="def-item">
+        <h4>📊 高斯濾波</h4>
+        <p>以高斯函數加權，平滑效果較自然，常用於去除高斯雜訊</p>
+      </div>
+      <div class="def-item">
+        <h4>📉 中值濾波</h4>
+        <p>取鄰域中值，對椒鹽雜訊效果極佳，且能保留邊緣資訊</p>
+      </div>
+      <div class="def-item">
+        <h4>✏️ 銳化濾波</h4>
+        <p>增強邊緣對比，使影像更清晰，常用 Laplacian 或 Unsharp Mask</p>
+      </div>
+    </div>
+
+    <h2>邊緣偵測</h2>
+    <p>邊緣是物件特徵的重要組成，常用的邊緣偵測演算法：</p>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🔷</span>
+        <div class="card-title">Sobel</div>
+        <div class="card-desc">計算水平與垂直梯度，對雜訊有一定抵抗能力</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔶</span>
+        <div class="card-title">Canny</div>
+        <div class="card-desc">多階段處理，邊緣連續性好，為最常用的邊緣偵測演算法</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔷</span>
+        <div class="card-title">Laplacian</div>
+        <div class="card-desc">二階導數，對邊緣敏感，但容易受雜訊影響</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔶</span>
+        <div class="card-title">Prewitt</div>
+        <div class="card-desc">類似 Sobel，計算簡單，速度較快，適合即時應用</div>
+      </div>
+    </div>
+
+    <h2>影像分割</h2>
+    <p>將影像分割成感興趣的區域（ROI），是缺陷檢測的關鍵步驟：</p>
+    <div class="tech-list">
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>全域二值化 (Global Thresholding)</strong>
+          <span>以固定閾值將影像分為前景與背景，簡單但對光照變化敏感</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>Otsu 自動閾值法</strong>
+          <span>自動計算最佳閾值，最大化類間變異數，廣泛應用於工業影像</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>自適應二值化 (Adaptive Thresholding)</strong>
+          <span>根據局部區域計算閾值，對光照不均的影像效果更佳</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>語義分割 (Semantic Segmentation)</strong>
+          <span>以深度學習逐像素分類，可精準識別複雜場景中的各類物件</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>Python 程式碼範例</h2>
+    <p>使用 OpenCV 進行基本影像前處理：</p>
+    <div class="code-block">
+<span class="kw">import</span> cv2
+<span class="kw">import</span> numpy <span class="kw">as</span> np
+
+<span class="cm"># 讀取影像</span>
+img = cv2.<span class="fn">imread</span>(<span class="st">'pcb_image.jpg'</span>)
+
+<span class="cm"># 灰階轉換</span>
+gray = cv2.<span class="fn">cvtColor</span>(img, cv2.COLOR_BGR2GRAY)
+
+<span class="cm"># 高斯去雜訊</span>
+blur = cv2.<span class="fn">GaussianBlur</span>(gray, (5, 5), 0)
+
+<span class="cm"># Canny 邊緣偵測</span>
+edges = cv2.<span class="fn">Canny</span>(blur, 50, 150)
+
+<span class="cm"># Otsu 二值化</span>
+_, thresh = cv2.<span class="fn">threshold</span>(blur, 0, 255,
+    cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    </div>
+
+    <div class="pdf-section">
+      <h3>📄 相關 PDF 講義</h3>
+      <div class="pdf-links">
+        <a href="#" class="pdf-link">📄 影像處理基礎.pdf</a>
+        <a href="#" class="pdf-link">📄 影像分割演算法.pdf</a>
+        <a href="#" class="pdf-link">📄 OpenCV 實作指南.pdf</a>
+      </div>
+    </div>
+
+  </div>
+  <footer>機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>© 2025 課程教材網站</footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) sidebar.classList.remove('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>專題報告 - 機器視覺與影像處理</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    .project-header-card {
+      background: linear-gradient(135deg, #0f2744, #1a4a7a);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      color: white;
+      margin-bottom: 28px;
+    }
+    .project-header-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .project-header-card p {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      margin: 0;
+    }
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      margin-right: 6px;
+      margin-bottom: 10px;
+    }
+    .tag-blue { background: rgba(14,165,233,0.2); color: #7dd3fc; border: 1px solid rgba(14,165,233,0.3); }
+    .tag-green { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    .tag-yellow { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+    .metric-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: block;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      margin: 20px 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .timeline-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <div class="sidebar-logo-icon">👁</div>
+      <div>
+        <div class="sidebar-logo-text">機器視覺<br>影像處理</div>
+        <div class="sidebar-logo-sub">Machine Vision</div>
+      </div>
+    </a>
+  </div>
+  <nav><ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span>首頁</a></li>
+    <li><a href="intro.html"><span class="nav-icon">🔍</span>機器視覺簡介</a></li>
+    <li><a href="imaging.html"><span class="nav-icon">📷</span>取像模組</a></li>
+    <li><a href="lighting.html"><span class="nav-icon">💡</span>光源與照明</a></li>
+    <li><a href="processing.html"><span class="nav-icon">🎨</span>影像處理</a></li>
+    <li><a href="application.html"><span class="nav-icon">✅</span>檢測應用</a></li>
+    <li><a href="project.html" class="active"><span class="nav-icon">📁</span>專題報告</a></li>
+  </ul></nav>
+  <div class="sidebar-footer">機器視覺與影像處理<br>© 2025 課程教材</div>
+</aside>
+
+<div class="main">
+  <div class="page-header">
+    <div class="page-header-label">Capstone Project</div>
+    <h1><span class="page-icon">📁</span>專題報告</h1>
+    <div class="page-header-subtitle">PCB Defect Detection & Accident Image Classification</div>
+  </div>
+
+  <div class="content">
+
+    <h2>專題一：PCB 瑕疵檢測</h2>
+    <div class="project-header-card">
+      <h3>基於 YOLO 的 PCB 印刷電路板缺陷自動檢測系統</h3>
+      <p>Automated PCB Defect Detection System Based on YOLO</p>
+      <div style="margin-top:14px;">
+        <span class="tag tag-blue">YOLOv11</span>
+        <span class="tag tag-blue">Python</span>
+        <span class="tag tag-green">OpenCV</span>
+        <span class="tag tag-green">Albumentations</span>
+        <span class="tag tag-yellow">Data Augmentation</span>
+      </div>
+    </div>
+
+    <h3>研究背景與目標</h3>
+    <p>
+      PCB 製造過程中不可避免地會產生各種缺陷，傳統人工目視檢查效率低且容易疲勞誤判。
+      本專題採用 YOLOv11 深度學習模型，建立一套能夠自動識別並分類 PCB 表面缺陷的 AOI 系統。
+    </p>
+
+    <h3>資料集</h3>
+    <div class="metric-row">
+      <div class="metric-box">
+        <span class="metric-val">~2000</span>
+        <span class="metric-label">訓練影像數</span>
+      </div>
+      <div class="metric-box">
+        <span class="metric-val">6</span>
+        <span class="metric-label">缺陷類別數</span>
+      </div>
+      <div class="metric-box">
+        <span class="metric-val">80%</span>
+        <span class="metric-label">訓練集比例</span>
+      </div>
+      <div class="metric-box">
+        <span class="metric-val">20%</span>
+        <span class="metric-label">驗證集比例</span>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>缺陷類別：</strong> missing_hole、mouse_bite、open_circuit、short、spur、spurious_copper
+    </div>
+
+    <h3>資料增強策略</h3>
+    <p>使用 <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">albumentations</code> 函式庫進行以下增強操作，以提升模型泛化能力：</p>
+    <ul class="feature-list">
+      <li>水平/垂直翻轉（Flip）</li>
+      <li>隨機旋轉 ±15° (Rotate)</li>
+      <li>亮度與對比度隨機調整（RandomBrightnessContrast）</li>
+      <li>高斯雜訊添加（GaussNoise）</li>
+      <li>隨機縮放與平移（ShiftScaleRotate）</li>
+    </ul>
+
+    <h3>開發流程</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>資料蒐集與整理</h4>
+        <p>下載公開 PCB 缺陷資料集，統一標注格式為 YOLO 格式（.txt）</p>
+      </div>
+      <div class="timeline-item">
+        <h4>資料前處理與增強</h4>
+        <p>撰寫 resplit_and_augment.py，解決中文路徑問題，執行影像增強</p>
+      </div>
+      <div class="timeline-item">
+        <h4>模型訓練</h4>
+        <p>使用 YOLOv11 進行訓練（model_10），調整超參數優化結果</p>
+      </div>
+      <div class="timeline-item">
+        <h4>結果評估</h4>
+        <p>以 mAP、Precision、Recall 等指標評估模型效能</p>
+      </div>
+      <div class="timeline-item">
+        <h4>系統整合與展示</h4>
+        <p>建立推論介面，進行即時缺陷標注與分類展示</p>
+      </div>
+    </div>
+
+    <hr style="border:none;border-top:1px solid var(--border);margin:36px 0;">
+
+    <h2>專題二：車禍影像分類</h2>
+    <div class="project-header-card">
+      <h3>基於深度學習的車禍嚴重程度影像分類系統</h3>
+      <p>Deep Learning Based Car Accident Severity Image Classification</p>
+      <div style="margin-top:14px;">
+        <span class="tag tag-blue">CNN</span>
+        <span class="tag tag-blue">Transfer Learning</span>
+        <span class="tag tag-green">Image Classification</span>
+        <span class="tag tag-yellow">Multi-class</span>
+      </div>
+    </div>
+
+    <h3>研究目標</h3>
+    <p>
+      透過分析車禍現場影像，自動判斷事故嚴重程度，輔助緊急救援資源的快速調度與優先級判斷。
+      本系統可應用於行車記錄器影像或監控攝影機的即時影像分析。
+    </p>
+
+    <h3>技術架構</h3>
+    <div class="tech-list">
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>骨幹網路 (Backbone)</strong>
+          <span>採用預訓練 CNN 模型（如 ResNet、EfficientNet）作為特徵提取器</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>遷移學習 (Transfer Learning)</strong>
+          <span>在預訓練權重基礎上 Fine-tune，加快收斂速度並減少所需訓練資料量</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>多類別分類輸出</strong>
+          <span>依事故嚴重程度分類輸出，並附帶信心分數（Confidence Score）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <h3>📄 專題相關資源</h3>
+      <div class="pdf-links">
+        <a href="#" class="pdf-link">📄 專題報告書.pdf</a>
+        <a href="#" class="pdf-link">📄 簡報 Slides.pdf</a>
+        <a href="#" class="pdf-link">📄 實驗結果摘要.pdf</a>
+      </div>
+    </div>
+
+  </div>
+  <footer>機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>© 2025 課程教材網站</footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) sidebar.classList.remove('open');
+  });
+</script>
+</body>
+</html>

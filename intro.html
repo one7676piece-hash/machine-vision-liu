@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>機器視覺簡介 - 機器視覺與影像處理</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<button class="hamburger" id="hamburger" aria-label="開啟選單">
+  <span></span><span></span><span></span>
+</button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <div class="sidebar-logo-icon">👁</div>
+      <div>
+        <div class="sidebar-logo-text">機器視覺<br>影像處理</div>
+        <div class="sidebar-logo-sub">Machine Vision</div>
+      </div>
+    </a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html"><span class="nav-icon">🏠</span>首頁</a></li>
+      <li><a href="intro.html" class="active"><span class="nav-icon">🔍</span>機器視覺簡介</a></li>
+      <li><a href="imaging.html"><span class="nav-icon">📷</span>取像模組</a></li>
+      <li><a href="lighting.html"><span class="nav-icon">💡</span>光源與照明</a></li>
+      <li><a href="processing.html"><span class="nav-icon">🎨</span>影像處理</a></li>
+      <li><a href="application.html"><span class="nav-icon">✅</span>檢測應用</a></li>
+      <li><a href="project.html"><span class="nav-icon">📁</span>專題報告</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    機器視覺與影像處理<br>© 2025 課程教材
+  </div>
+</aside>
+
+<div class="main">
+  <div class="page-header">
+    <div class="page-header-label">Chapter 01</div>
+    <h1><span class="page-icon">🔍</span>機器視覺簡介</h1>
+    <div class="page-header-subtitle">Introduction to Machine Vision</div>
+  </div>
+
+  <div class="content">
+
+    <h2>什麼是機器視覺檢測？</h2>
+
+    <div class="img-placeholder">
+      <span class="img-ph-icon">🖼️</span>
+      <span>機器視覺檢測系統示意圖</span>
+      <span style="font-size:11px;color:#94a3b8;">可替換為實際圖片</span>
+    </div>
+
+    <div class="info-box">
+      <strong>AOI (Automated Optical Inspection)</strong> 自動化光學檢測是利用機器視覺技術進行產品品質檢測的先進技術。透過光學系統擷取產品影像，並運用影像處理與人工智慧演算法，自動判斷產品是否符合品質標準。
+    </div>
+
+    <p>機器視覺檢測能夠取代傳統的人工目視檢查，大幅提高檢測效率與準確性。相較於人工檢測，機器視覺系統具有以下優勢：</p>
+
+    <ul class="feature-list">
+      <li>24 小時不間斷運作，不受疲勞影響</li>
+      <li>檢測速度快，可達每秒數百件</li>
+      <li>檢測標準一致，減少人為誤判</li>
+      <li>可檢測微小缺陷，精度達微米等級</li>
+      <li>完整記錄檢測數據，便於追溯分析</li>
+    </ul>
+
+    <h2>機器視覺的相關領域</h2>
+
+    <p>機器視覺是一門跨領域的整合技術，涵蓋多個專業領域的知識與應用：</p>
+
+    <div class="tech-list">
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>光學 (Optics)</strong>
+          <span>光源設計、鏡頭選擇、成像原理，確保獲得高品質的影像</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>影像處理 (Image Processing)</strong>
+          <span>影像濾波、影像增強、影像分割，提升影像品質與特徵萃取</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>電腦視覺 (Computer Vision)</strong>
+          <span>特徵提取、物體識別、場景理解，實現智能化的視覺分析</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>機器學習 (Machine Learning)</strong>
+          <span>深度學習、分類演算法、缺陷預測，提升檢測的智能化程度</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>六大核心功能</h2>
+    <p>機器視覺系統具備多種核心功能，可應用於不同的檢測需求：</p>
+
+    <div class="def-grid">
+      <div class="def-item">
+        <h4>📍 定位 (Location)</h4>
+        <p>確定物件在空間中的位置與方向，提供精確的座標資訊</p>
+      </div>
+      <div class="def-item">
+        <h4>🔖 識別 (Identification)</h4>
+        <p>讀取條碼、二維碼、字符等資訊，實現產品追溯與管理</p>
+      </div>
+      <div class="def-item">
+        <h4>🧠 辨識 (Recognition)</h4>
+        <p>識別物件的形狀、顏色、紋理等特徵，進行分類與判別</p>
+      </div>
+      <div class="def-item">
+        <h4>🔎 瑕疵檢測 (Defect Detection)</h4>
+        <p>檢測表面缺陷、異物、劃痕等品質問題</p>
+      </div>
+      <div class="def-item">
+        <h4>✅ 驗證 (Verification)</h4>
+        <p>確認組裝是否正確、零件是否完整，確保產品品質</p>
+      </div>
+      <div class="def-item">
+        <h4>📐 量測 (Measurement)</h4>
+        <p>精確測量尺寸、距離、角度等幾何參數</p>
+      </div>
+    </div>
+
+    <h2>AOI 系統的關鍵技術</h2>
+    <p>建構一套完整的 AOI 系統需要整合多項關鍵技術：</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🔦</span>
+        <div class="card-title">光學設計</div>
+        <div class="card-desc">照明系統與光源配置，確保影像品質</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚙️</span>
+        <div class="card-title">機台設計</div>
+        <div class="card-desc">機械結構與穩定性，提供精密的運動平台</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <div class="card-title">運動控制</div>
+        <div class="card-desc">精密定位與移動控制，實現高速檢測</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔗</span>
+        <div class="card-title">系統整合</div>
+        <div class="card-desc">軟硬體協同運作，確保系統穩定性</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🖼️</span>
+        <div class="card-title">影像處理</div>
+        <div class="card-desc">影像增強與分析，提升檢測效果</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🧩</span>
+        <div class="card-title">特徵擷取</div>
+        <div class="card-desc">關鍵特徵識別，實現精準判斷</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">📏</span>
+        <div class="card-title">尺寸量測</div>
+        <div class="card-desc">精確度量與校正，確保測量精度</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚨</span>
+        <div class="card-title">瑕疵檢測</div>
+        <div class="card-desc">缺陷判定演算法，提高檢測準確率</div>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <h3>📄 相關 PDF 講義</h3>
+      <div class="pdf-links">
+        <a href="#" class="pdf-link">📄 機器視覺檢測簡介.pdf</a>
+        <a href="#" class="pdf-link">📄 取像參數的選用KM.pdf</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>
+    © 2025 課程教材網站
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) sidebar.classList.remove('open');
+  });
+</script>
+</body>
+</html>

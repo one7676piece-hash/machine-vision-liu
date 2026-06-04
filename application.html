@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>檢測應用 - 機器視覺與影像處理</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <div class="sidebar-logo-icon">👁</div>
+      <div>
+        <div class="sidebar-logo-text">機器視覺<br>影像處理</div>
+        <div class="sidebar-logo-sub">Machine Vision</div>
+      </div>
+    </a>
+  </div>
+  <nav><ul>
+    <li><a href="index.html"><span class="nav-icon">🏠</span>首頁</a></li>
+    <li><a href="intro.html"><span class="nav-icon">🔍</span>機器視覺簡介</a></li>
+    <li><a href="imaging.html"><span class="nav-icon">📷</span>取像模組</a></li>
+    <li><a href="lighting.html"><span class="nav-icon">💡</span>光源與照明</a></li>
+    <li><a href="processing.html"><span class="nav-icon">🎨</span>影像處理</a></li>
+    <li><a href="application.html" class="active"><span class="nav-icon">✅</span>檢測應用</a></li>
+    <li><a href="project.html"><span class="nav-icon">📁</span>專題報告</a></li>
+  </ul></nav>
+  <div class="sidebar-footer">機器視覺與影像處理<br>© 2025 課程教材</div>
+</aside>
+
+<div class="main">
+  <div class="page-header">
+    <div class="page-header-label">Chapter 05</div>
+    <h1><span class="page-icon">✅</span>檢測應用</h1>
+    <div class="page-header-subtitle">Inspection Applications</div>
+  </div>
+
+  <div class="content">
+
+    <h2>AOI 在各產業的應用</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🔌</span>
+        <div class="card-title">PCB 電路板檢測</div>
+        <div class="card-desc">焊點缺陷、短路、斷路、零件缺件、元件偏移等瑕疵檢測</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">💊</span>
+        <div class="card-title">藥品製造</div>
+        <div class="card-desc">藥錠外觀破損、缺口、顏色異常，以及包裝完整性驗證</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🚗</span>
+        <div class="card-title">汽車零件</div>
+        <div class="card-desc">金屬表面刮傷、裂縫、尺寸公差，以及組裝正確性確認</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🍱</span>
+        <div class="card-title">食品包裝</div>
+        <div class="card-desc">條碼識別、包裝密封性、異物偵測、標籤位置驗證</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <div class="card-title">半導體</div>
+        <div class="card-desc">晶圓缺陷、封裝完整性、引腳共面度量測</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🪟</span>
+        <div class="card-title">玻璃面板</div>
+        <div class="card-desc">顯示器面板的亮暗點、異物、刮痕等外觀瑕疵檢測</div>
+      </div>
+    </div>
+
+    <h2>PCB 缺陷類型</h2>
+    <p>印刷電路板（PCB）的常見缺陷可分為以下幾大類：</p>
+    <div class="def-grid">
+      <div class="def-item">
+        <h4>🔴 短路 (Short Circuit)</h4>
+        <p>相鄰導線意外連通，造成電路功能異常</p>
+      </div>
+      <div class="def-item">
+        <h4>⭕ 斷路 (Open Circuit)</h4>
+        <p>導線斷裂，訊號無法正常傳輸</p>
+      </div>
+      <div class="def-item">
+        <h4>📍 冷焊 (Cold Solder)</h4>
+        <p>焊接溫度不足，焊點結晶粗糙，接觸電阻過高</p>
+      </div>
+      <div class="def-item">
+        <h4>❌ 缺件 (Missing Component)</h4>
+        <p>應安裝的零件未安裝，造成電路功能缺失</p>
+      </div>
+      <div class="def-item">
+        <h4>↔️ 偏移 (Misalignment)</h4>
+        <p>零件位置偏離正確焊點，影響電氣連接</p>
+      </div>
+      <div class="def-item">
+        <h4>🏔️ 錫橋 (Solder Bridge)</h4>
+        <p>多餘錫膏造成不同焊點短路</p>
+      </div>
+    </div>
+
+    <h2>深度學習在 AOI 的應用</h2>
+    <p>傳統的規則式檢測對複雜缺陷有其限制，深度學習的引入大幅提升了檢測能力：</p>
+    <div class="tech-list">
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>YOLO (You Only Look Once)</strong>
+          <span>即時物件偵測演算法，適合在生產線上快速識別缺陷類型與位置，兼顧速度與準確率</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>CNN 分類器</strong>
+          <span>以卷積神經網路對缺陷影像進行多類別分類，適合品質等級判定</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>語義分割模型</strong>
+          <span>逐像素標記缺陷區域，提供精準的缺陷形狀與面積資訊</span>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-item-dot"></div>
+        <div class="tech-item-body">
+          <strong>異常偵測 (Anomaly Detection)</strong>
+          <span>只需學習正常樣本，自動識別任何偏離正常模式的缺陷，無需缺陷樣本</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <strong>YOLO 在 PCB 檢測的優勢：</strong> YOLO 架構可在單次前向傳播中完成多類別缺陷偵測，推論速度可達每秒 30+ 張影像，符合工業生產線的即時性需求，且準確率持續隨版本提升（v5、v8、v11）。
+    </div>
+
+    <h2>檢測流程</h2>
+    <div class="cards-grid">
+      <div class="card" style="border-top:3px solid #0ea5e9;">
+        <span class="card-icon">1️⃣</span>
+        <div class="card-title">影像擷取</div>
+        <div class="card-desc">相機拍攝待測物，確保影像清晰且光照均勻</div>
+      </div>
+      <div class="card" style="border-top:3px solid #0ea5e9;">
+        <span class="card-icon">2️⃣</span>
+        <div class="card-title">前處理</div>
+        <div class="card-desc">去雜訊、對比度增強、影像校正</div>
+      </div>
+      <div class="card" style="border-top:3px solid #0ea5e9;">
+        <span class="card-icon">3️⃣</span>
+        <div class="card-title">特徵提取</div>
+        <div class="card-desc">模型推論，提取缺陷特徵與位置資訊</div>
+      </div>
+      <div class="card" style="border-top:3px solid #0ea5e9;">
+        <span class="card-icon">4️⃣</span>
+        <div class="card-title">判斷輸出</div>
+        <div class="card-desc">與基準比對，判定 OK / NG 並記錄數據</div>
+      </div>
+    </div>
+
+    <div class="pdf-section">
+      <h3>📄 相關 PDF 講義</h3>
+      <div class="pdf-links">
+        <a href="#" class="pdf-link">📄 AOI 檢測應用.pdf</a>
+        <a href="#" class="pdf-link">📄 深度學習檢測實務.pdf</a>
+      </div>
+    </div>
+
+  </div>
+  <footer>機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>© 2025 課程教材網站</footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) sidebar.classList.remove('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>機器視覺與影像處理</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Hero section */
+    .hero {
+      background: linear-gradient(135deg, #0f2744 0%, #1a4a7a 50%, #1d6fa8 100%);
+      padding: 80px 56px 72px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 65%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #0ea5e9, #f59e0b, #0ea5e9);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(14,165,233,0.2);
+      border: 1px solid rgba(14,165,233,0.4);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      color: #7dd3fc;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .hero-en {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+    .hero-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      max-width: 580px;
+      margin-bottom: 36px;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0ea5e9;
+      color: white;
+      text-decoration: none;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(14,165,233,0.35);
+    }
+    .hero-cta:hover {
+      background: #0284c7;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(14,165,233,0.4);
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-item {
+      flex: 1;
+      padding: 24px 32px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* Module grid */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.25s;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .module-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+    .module-card-icon {
+      font-size: 32px;
+      display: block;
+    }
+    .module-card-title {
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .module-card-en {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+    .module-card-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .module-card-arrow {
+      margin-top: auto;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Feature section */
+    .features-section {
+      background: #f1f5f9;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 40px 56px;
+    }
+    .features-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .feature-item {
+      background: white;
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-item-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+    .feature-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .feature-item p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 72px 24px 48px; }
+      .hero h1 { font-size: 2rem; }
+      .stats-bar { flex-direction: column; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .module-grid { grid-template-columns: 1fr; }
+      .features-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hamburger -->
+<button class="hamburger" id="hamburger" aria-label="開啟選單">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <a href="index.html">
+      <div class="sidebar-logo-icon">👁</div>
+      <div>
+        <div class="sidebar-logo-text">機器視覺<br>影像處理</div>
+        <div class="sidebar-logo-sub">Machine Vision</div>
+      </div>
+    </a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html" class="active"><span class="nav-icon">🏠</span>首頁</a></li>
+      <li><a href="intro.html"><span class="nav-icon">🔍</span>機器視覺簡介</a></li>
+      <li><a href="imaging.html"><span class="nav-icon">📷</span>取像模組</a></li>
+      <li><a href="lighting.html"><span class="nav-icon">💡</span>光源與照明</a></li>
+      <li><a href="processing.html"><span class="nav-icon">🎨</span>影像處理</a></li>
+      <li><a href="application.html"><span class="nav-icon">✅</span>檢測應用</a></li>
+      <li><a href="project.html"><span class="nav-icon">📁</span>專題報告</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    機器視覺與影像處理<br>
+    © 2025 課程教材
+  </div>
+</aside>
+
+<!-- Main -->
+<div class="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">🎓 課程教材網站</div>
+    <h1>機器視覺<br>與影像處理</h1>
+    <div class="hero-en">Machine Vision & Image Processing</div>
+    <p class="hero-desc">
+      探索自動化光學檢測（AOI）的核心技術與應用。<br>
+      從取像模組到深度學習，掌握完整的機器視覺知識體系。
+    </p>
+    <a href="intro.html" class="hero-cta">開始學習 →</a>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">6</span>
+      <span class="stat-label">課程模組</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">AOI</span>
+      <span class="stat-label">自動光學檢測</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">YOLO</span>
+      <span class="stat-label">深度學習應用</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">PCB</span>
+      <span class="stat-label">缺陷檢測案例</span>
+    </div>
+  </div>
+
+  <!-- Modules -->
+  <div class="content">
+    <h2>課程模組</h2>
+    <p style="color:var(--text-muted);font-size:14px;margin-bottom:8px;">點擊各模組開始學習對應章節內容</p>
+    <div class="module-grid">
+      <a href="intro.html" class="module-card">
+        <span class="module-card-icon">🔍</span>
+        <div class="module-card-title">機器視覺簡介</div>
+        <div class="module-card-en">Introduction to Machine Vision</div>
+        <div class="module-card-desc">了解 AOI 的定義、六大功能與應用領域，建立機器視覺的基礎概念。</div>
+        <div class="module-card-arrow">閱讀更多 →</div>
+      </a>
+      <a href="imaging.html" class="module-card">
+        <span class="module-card-icon">📷</span>
+        <div class="module-card-title">取像模組</div>
+        <div class="module-card-en">Imaging Module</div>
+        <div class="module-card-desc">相機種類、鏡頭規格選用與搭配技術，掌握影像擷取的核心知識。</div>
+        <div class="module-card-arrow">閱讀更多 →</div>
+      </a>
+      <a href="lighting.html" class="module-card">
+        <span class="module-card-icon">💡</span>
+        <div class="module-card-title">光源與照明設計</div>
+        <div class="module-card-en">Lighting Design</div>
+        <div class="module-card-desc">照明方式、光源種類與設計原則，優化影像品質的關鍵技術。</div>
+        <div class="module-card-arrow">閱讀更多 →</div>
+      </a>
+      <a href="processing.html" class="module-card">
+        <span class="module-card-icon">🎨</span>
+        <div class="module-card-title">影像處理技術</div>
+        <div class="module-card-en">Image Processing</div>
+        <div class="module-card-desc">空間濾波、頻率濾波與影像分割，提升檢測準確度的核心演算法。</div>
+        <div class="module-card-arrow">閱讀更多 →</div>
+      </a>
+      <a href="application.html" class="module-card">
+        <span class="module-card-icon">✅</span>
+        <div class="module-card-title">檢測應用</div>
+        <div class="module-card-en">Inspection Applications</div>
+        <div class="module-card-desc">檢測方法、流程與實際應用案例，將理論轉化為實務能力。</div>
+        <div class="module-card-arrow">閱讀更多 →</div>
+      </a>
+      <a href="project.html" class="module-card">
+        <span class="module-card-icon">📁</span>
+        <div class="module-card-title">專題報告</div>
+        <div class="module-card-en">Capstone Project</div>
+        <div class="module-card-desc">PCB 缺陷檢測與車禍影像分類的深度學習專題研究成果。</div>
+        <div class="module-card-arrow">閱讀更多 →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <section class="features-section">
+    <h2 style="font-family:var(--font-heading);font-size:1.3rem;color:var(--primary);margin-bottom:4px;">課程特色</h2>
+    <p style="font-size:13.5px;color:var(--text-muted);">整合理論與實務，從基礎到進階完整學習</p>
+    <div class="features-row">
+      <div class="feature-item">
+        <span class="feature-item-icon">📐</span>
+        <h4>完整知識體系</h4>
+        <p>涵蓋光學、影像處理、電腦視覺與機器學習的跨領域整合內容。</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-item-icon">🤖</span>
+        <h4>深度學習應用</h4>
+        <p>結合 YOLO 模型進行 PCB 缺陷檢測與影像分類的實作案例。</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-item-icon">📄</span>
+        <h4>豐富學習資源</h4>
+        <p>各章節附有 PDF 講義、圖解說明，支援自學與複習需求。</p>
+      </div>
+      <div class="feature-item">
+        <span class="feature-item-icon">🔬</span>
+        <h4>產業實務導向</h4>
+        <p>以半導體與製造業的 AOI 檢測為核心場景，貼近業界需求。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>
+    © 2025 課程教材網站
+  </footer>
+</div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const sidebar = document.getElementById('sidebar');
+  hamburger.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.addEventListener('click', (e) => {
+    if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
