@@ -142,136 +142,102 @@
 
   <div class="content">
 
-    <h2>專題一：PCB 瑕疵檢測</h2>
+    <div class="page-header-label" style="color: var(--primary); margin-bottom: 10px; font-family: var(--font-mono);">Capstone Project</div>
+    <h2>PCB 板瑕疵邊緣偵測：短路與開路之自動化光學檢測</h2>
+    
     <div class="project-header-card">
-      <h3>基於 YOLO 的 PCB 印刷電路板缺陷自動檢測系統</h3>
-      <p>Automated PCB Defect Detection System Based on YOLO</p>
+      <h3>基於 MATLAB 的傳統機器視覺與邏輯容錯系統</h3>
+      <p>Automated Optical Inspection for PCB Short and Open Defects</p>
       <div style="margin-top:14px;">
-        <span class="tag tag-blue">YOLOv11</span>
-        <span class="tag tag-blue">Python</span>
-        <span class="tag tag-green">OpenCV</span>
-        <span class="tag tag-green">Albumentations</span>
-        <span class="tag tag-yellow">Data Augmentation</span>
+        <span class="tag tag-blue">MATLAB</span>
+        <span class="tag tag-blue">傳統影像處理</span>
+        <span class="tag tag-green">方向性相減</span>
+        <span class="tag tag-green">骨架交集驗證</span>
+        <span class="tag tag-yellow">AOI 線掃描系統</span>
       </div>
     </div>
 
     <h3>研究背景與目標</h3>
     <p>
-      PCB 製造過程中不可避免地會產生各種缺陷，傳統人工目視檢查效率低且容易疲勞誤判。
-      本專題採用 YOLOv11 深度學習模型，建立一套能夠自動識別並分類 PCB 表面缺陷的 AOI 系統。
+      針對「幾何輪廓遭到破壞或改變」的 PCB 走線與銅箔缺陷進行檢測。PCB 走線具備規律且筆直的幾何輪廓，在工業相機拍攝下，高反射率的金屬銅箔走線呈現高亮度白色，與平坦的基板背景產生高對比邊緣。本系統旨在自動識別並分類兩種主要瑕疵：
     </p>
 
-    <h3>資料集</h3>
+    <div class="def-grid">
+      <div class="def-item">
+        <h4>🔴 短路 (Short / Solder Bridge)</h4>
+        <p>兩條原本平行的走線邊緣之間，出現了不該存在的「橫向邊緣」將其連接，導致電路異常導通。</p>
+      </div>
+      <div class="def-item">
+        <h4>⭕ 開路 / 斷路 (Open / Mouse Bite)</h4>
+        <p>連續的直線走線邊緣突然中斷，或是邊緣出現向內凹陷導致線路斷開，造成訊號無法傳遞。</p>
+      </div>
+    </div>
+
+    <h3>硬體取像與光學規劃</h3>
     <div class="metric-row">
       <div class="metric-box">
-        <span class="metric-val">~2000</span>
-        <span class="metric-label">訓練影像數</span>
+        <span class="metric-val">48</span>
+        <span class="metric-label">解析度 (px/mm)</span>
       </div>
       <div class="metric-box">
-        <span class="metric-val">6</span>
-        <span class="metric-label">缺陷類別數</span>
+        <span class="metric-val">640²</span>
+        <span class="metric-label">子影像 FOV 大小</span>
       </div>
       <div class="metric-box">
-        <span class="metric-val">80%</span>
-        <span class="metric-label">訓練集比例</span>
+        <span class="metric-val">CCD</span>
+        <span class="metric-label">線性掃描相機</span>
       </div>
       <div class="metric-box">
-        <span class="metric-val">20%</span>
-        <span class="metric-label">驗證集比例</span>
+        <span class="metric-val">DeepPCB</span>
+        <span class="metric-label">開源測試資料集</span>
       </div>
     </div>
 
-    <div class="info-box">
-      <strong>缺陷類別：</strong> missing_hole、mouse_bite、open_circuit、short、spur、spurious_copper
-    </div>
-
-    <h3>資料增強策略</h3>
-    <p>使用 <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">albumentations</code> 函式庫進行以下增強操作，以提升模型泛化能力：</p>
-    <ul class="feature-list">
-      <li>水平/垂直翻轉（Flip）</li>
-      <li>隨機旋轉 ±15° (Rotate)</li>
-      <li>亮度與對比度隨機調整（RandomBrightnessContrast）</li>
-      <li>高斯雜訊添加（GaussNoise）</li>
-      <li>隨機縮放與平移（ShiftScaleRotate）</li>
-    </ul>
-
-    <h3>開發流程</h3>
-    <div class="timeline">
-      <div class="timeline-item">
-        <h4>資料蒐集與整理</h4>
-        <p>下載公開 PCB 缺陷資料集，統一標注格式為 YOLO 格式（.txt）</p>
-      </div>
-      <div class="timeline-item">
-        <h4>資料前處理與增強</h4>
-        <p>撰寫 resplit_and_augment.py，解決中文路徑問題，執行影像增強</p>
-      </div>
-      <div class="timeline-item">
-        <h4>模型訓練</h4>
-        <p>使用 YOLOv11 進行訓練（model_10），調整超參數優化結果</p>
-      </div>
-      <div class="timeline-item">
-        <h4>結果評估</h4>
-        <p>以 mAP、Precision、Recall 等指標評估模型效能</p>
-      </div>
-      <div class="timeline-item">
-        <h4>系統整合與展示</h4>
-        <p>建立推論介面，進行即時缺陷標注與分類展示</p>
-      </div>
-    </div>
-
-    <hr style="border:none;border-top:1px solid var(--border);margin:36px 0;">
-
-    <h2>專題二：車禍影像分類</h2>
-    <div class="project-header-card">
-      <h3>基於深度學習的車禍嚴重程度影像分類系統</h3>
-      <p>Deep Learning Based Car Accident Severity Image Classification</p>
-      <div style="margin-top:14px;">
-        <span class="tag tag-blue">CNN</span>
-        <span class="tag tag-blue">Transfer Learning</span>
-        <span class="tag tag-green">Image Classification</span>
-        <span class="tag tag-yellow">Multi-class</span>
-      </div>
-    </div>
-
-    <h3>研究目標</h3>
-    <p>
-      透過分析車禍現場影像，自動判斷事故嚴重程度，輔助緊急救援資源的快速調度與優先級判斷。
-      本系統可應用於行車記錄器影像或監控攝影機的即時影像分析。
-    </p>
-
-    <h3>技術架構</h3>
     <div class="tech-list">
       <div class="tech-item">
         <div class="tech-item-dot"></div>
         <div class="tech-item-body">
-          <strong>骨幹網路 (Backbone)</strong>
-          <span>採用預訓練 CNN 模型（如 ResNet、EfficientNet）作為特徵提取器</span>
+          <strong>低角度環形光源</strong>
+          <span>搭配線性掃描高均勻度光源，消除環境光干擾，強化表面特徵並穩定連續取像品質。</span>
         </div>
       </div>
       <div class="tech-item">
         <div class="tech-item-dot"></div>
         <div class="tech-item-body">
-          <strong>遷移學習 (Transfer Learning)</strong>
-          <span>在預訓練權重基礎上 Fine-tune，加快收斂速度並減少所需訓練資料量</span>
-        </div>
-      </div>
-      <div class="tech-item">
-        <div class="tech-item-dot"></div>
-        <div class="tech-item-body">
-          <strong>多類別分類輸出</strong>
-          <span>依事故嚴重程度分類輸出，並附帶信心分數（Confidence Score）</span>
+          <strong>自動化機構防震設計</strong>
+          <span>採用高剛性機構底座搭配精密滑軌與伺服馬達，確保 PCB 等速移動，消除連續掃描時的微小震動，防止邊緣扭曲。</span>
         </div>
       </div>
     </div>
 
-    <div class="pdf-section">
-      <h3>📄 專題相關資源</h3>
-      <div class="pdf-links">
-        <a href="#" class="pdf-link">📄 專題報告書.pdf</a>
-        <a href="#" class="pdf-link">📄 簡報 Slides.pdf</a>
-        <a href="#" class="pdf-link">📄 實驗結果摘要.pdf</a>
+    <h3>軟體分析與核心檢測流程</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>1. 影像擷取與預處理</h4>
+        <p>利用模板匹配 (Template Matching) 進行高精度座標對齊。將影像轉為單通道灰階並施加高斯低通濾波平滑化雜訊，隨後利用自適應二值化 (Binarization) 轉換為特徵明確的黑白遮罩。</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2. 邊緣特徵強化與方向性相減</h4>
+        <p>透過形態學膨脹 (Dilation) 建立邊緣容許誤差範圍（短路容許 3 像素偏移，斷路容許 2 像素偏移）。捨棄絕對值相減，利用邏輯運算元抓出凸出特徵：<br>
+        • <code>Test - Template</code> 若殘留像素，判定為短路 (多出的邊緣)<br>
+        • <code>Template - Test</code> 若殘留像素，判定為開路 (缺失的邊緣)</p>
+      </div>
+      <div class="timeline-item">
+        <h4>3. 骨架交集驗證 (Skeleton Validation)</h4>
+        <p>濾除毛刺雜訊的最關鍵步驟。程式擷取「背景中心線 (skel_bg)」與「走線中心線 (skel_fg)」。真正的短路必跨越背景骨架，斷路必跨越走線骨架。透過交集點與形態學重建 (imreconstruct) 還原真實瑕疵，排除微小對位誤差。</p>
+      </div>
+      <div class="timeline-item">
+        <h4>4. 瑕疵聚類與視覺化輸出</h4>
+        <p>對殘留像素進行連通域分析，計算面積大於安全容忍值即判定為真實瑕疵，並提取 Bounding Box 於原圖繪製紅色 (Short) 或藍色 (Open) 警示框。</p>
       </div>
     </div>
+
+    <h3>系統延伸應用場域</h3>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <div class="card-title">半導體封裝與引腳檢測</div>
+        <div class="card-desc">檢查
 
   </div>
   <footer>機器視覺與影像處理課程教材 &nbsp;|&nbsp; Machine Vision & Image Processing<br>© 2025 課程教材網站</footer>
